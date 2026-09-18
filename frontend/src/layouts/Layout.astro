@@ -1,0 +1,280 @@
+---
+import "../styles/global.css";
+interface Props {
+  title?: string;
+  description?: string;
+  ogImage?: string;
+}
+const { title = "Tradicionalne ručno rađene ogrlice — unikat 25 €", description = "14 ručno izrađenih tradicionalnih ogrlica. Svaka unikat — 25 €. Kupi ili pošalji upit.", ogImage } = Astro.props;
+const base = import.meta.env.BASE_URL;
+const site = (Astro.site?.toString() ?? "https://kvizazist.github.io").replace(/\/$/, "");
+const canonical = new URL(base + Astro.url.pathname.replace(/^\//, ""), site + "/").toString();
+// Handle both absolute (Cloudflare R2) and local ogImage paths
+const og = ogImage
+  ? /^(https?:)?\/\//.test(ogImage) || ogImage.startsWith("data:")
+    ? ogImage
+    : new URL(ogImage.replace(/^\//, ""), site + base).toString()
+  : undefined;
+const hvalaUrlStatic = new URL(base + "hvala/", site + "/").toString();
+---
+<!doctype html>
+<html lang="hr">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="generator" content={Astro.generator} />
+    <title>{title}</title>
+    <meta name="description" content={description} />
+    <link rel="canonical" href={canonical} />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    {og && <meta property="og:image" content={og} />}
+    <meta property="og:type" content="website" />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Instrument+Sans:wght@400;600;700&display=swap" rel="stylesheet">
+    <link rel="icon" type="image/svg+xml" href={`${base}favicon.svg`} />
+  </head>
+  <body>
+    <header class="header">
+      <div class="container header-inner">
+        <a href={base} class="logo">ogrlice<span>.</span></a>
+        <nav class="nav">
+          <a href={base}>Kolekcija</a>
+          <a href={`${base}#kontakt`}>Kontakt</a>
+          <a href="https://www.vinted.hr/member/kvizazist" target="_blank" rel="noopener">Vinted ↗</a>
+        </nav>
+      </div>
+    </header>
+    <main>
+      <slot />
+    </main>
+    <footer class="footer" id="kontakt">
+      <div class="container footer-inner">
+        <div>
+          <strong>Tradicionalne ručno rađene ogrlice</strong>
+        </div>
+        <div style="text-align:right">
+          <a href="https://www.vinted.hr/member/kvizazist" target="_blank" rel="noopener" style="text-decoration:underline">Vinted ↗</a><br/>
+          <span style="opacity:0.7">© {new Date().getFullYear()} — ručni rad</span>
+        </div>
+      </div>
+    </footer>
+
+    <!-- Inquiry Modal (global) -->
+    <div id="inquiry-modal" class="modal" aria-hidden="true">
+      <div class="modal-backdrop" data-close></div>
+      <div class="modal-panel" role="dialog" aria-modal="true" aria-labelledby="modal-title">
+        <div class="modal-header">
+          <div>
+            <h3 id="modal-title">Pošalji upit</h3>
+            <div id="modal-subtitle" style="color:var(--muted); font-size:0.9rem"></div>
+          </div>
+          <button class="modal-close" data-close aria-label="Zatvori">×</button>
+        </div>
+        <form
+          id="inquiry-form"
+          action="https://formsubmit.co/kvizazist@gmail.com"
+          method="POST"
+        >
+          <input type="hidden" name="_captcha" value="false" />
+          <input type="hidden" name="_subject" id="fs-subject" value="Upit za ogrlicu" />
+          <input type="hidden" name="_next" id="fs-next" value={hvalaUrlStatic} />
+          <input type="hidden" name="itemId" id="fs-itemId" value="" />
+          <input type="hidden" name="itemName" id="fs-itemName" value="" />
+          <input type="hidden" name="vintedUrl" id="fs-vintedUrl" value="" />
+          <input type="text" name="_honey" class="form-honey" tabindex="-1" autocomplete="off" />
+
+          <div class="form-grid">
+            <label>
+              Vaš email *
+              <input type="email" name="email" required placeholder="ime@primjer.com" />
+            </label>
+            <label>
+              Poruka (opcionalno)
+              <textarea name="message" placeholder="Pozdrav, zanima me ogrlica..."></textarea>
+            </label>
+            <button type="submit" class="btn btn-primary" style="width:100%">Pošalji upit</button>
+            <div class="form-meta">Slanjem pristajete da vas kontaktiramo na navedeni email. Poruka ide na kvizazist@gmail.com putem FormSubmit.</div>
+          </div>
+        </form>
+      </div>
+    </div>
+
+    <script>
+      import Lenis from 'lenis';
+      import gsap from 'gsap';
+      import { ScrollTrigger } from 'gsap/ScrollTrigger';
+      gsap.registerPlugin(ScrollTrigger);
+
+      // Lenis smooth scroll — tuned for silky wheel feel + GSAP sync
+      const lenis = new Lenis({
+        autoRaf: true,
+        // duration/easing give framerate-independent smoothness (prefer over lerp)
+        duration: 1.2,
+        easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
+        orientation: 'vertical',
+        gestureOrientation: 'vertical',
+        smoothWheel: true,
+        wheelMultiplier: 1,
+        touchMultiplier: 1.5,
+        syncTouch: false,
+        infinite: false,
+        // keep respecting user motion preference (default true) — set explicitly
+        // respects `prefers-reduced-motion: reduce` automatically
+      });
+      // Sync Lenis with GSAP ScrollTrigger — fixes jank/stutter when using both
+      lenis.on('scroll', ScrollTrigger.update);
+      // @ts-ignore — disable GSAP lag smoothing to prevent delay in scroll animations
+      gsap.ticker.lagSmoothing(0);
+      // expose for debugging
+      // @ts-ignore
+      window.lenis = lenis;
+
+      // GSAP reveal
+      const reveals = document.querySelectorAll('.reveal');
+      if (reveals.length) {
+        gsap.to(reveals, {
+          opacity: 1,
+          y: 0,
+          duration: 0.7,
+          stagger: 0.06,
+          ease: 'power3.out',
+          scrollTrigger: {
+            trigger: reveals[0].parentElement,
+            start: 'top 85%'
+          }
+        });
+        // fallback if ScrollTrigger not firing (no scroll)
+        setTimeout(() => {
+          reveals.forEach(el => {
+            const r = el as HTMLElement;
+            if (getComputedStyle(r).opacity === '0') {
+              r.style.opacity = '1';
+              r.style.transform = 'none';
+            }
+          });
+        }, 900);
+      }
+
+      // Gallery thumbs (detail page)
+      document.querySelectorAll('[data-gallery]').forEach(root => {
+        const mainImg = root.querySelector('[data-main-img]') as HTMLImageElement | null;
+        const thumbs = root.querySelectorAll('[data-thumb]');
+        thumbs.forEach(btn => {
+          btn.addEventListener('click', () => {
+            const src = (btn as HTMLElement).dataset.src;
+            if (mainImg && src) mainImg.src = src;
+            thumbs.forEach(b => b.classList.remove('active'));
+            btn.classList.add('active');
+          });
+        });
+      });
+
+      // Home card swipeable gallery — first is model, swipe on mobile / press on desktop to show second photo
+      document.querySelectorAll('[data-card-gallery]').forEach(root => {
+        const track = root.querySelector('.card-track') as HTMLElement | null;
+        if (!track) return;
+        const dots = root.querySelectorAll('[data-dot]');
+        const imgs = track.querySelectorAll('img');
+        if (imgs.length <= 1) return;
+        const updateDots = () => {
+          const idx = Math.round(track.scrollLeft / track.clientWidth);
+          dots.forEach((d, i) => d.classList.toggle('active', i === idx));
+        };
+        track.addEventListener('scroll', updateDots, { passive: true } as any);
+        const goTo = (idx: number) => {
+          track.scrollTo({ left: idx * track.clientWidth, behavior: 'smooth' });
+        };
+        dots.forEach(d => {
+          d.addEventListener('click', (e) => {
+            e.stopPropagation();
+            const idx = Number((d as HTMLElement).dataset.dot);
+            goTo(idx);
+          });
+        });
+        let startX = 0;
+        let isDragging = false;
+        track.addEventListener('pointerdown', (e: PointerEvent) => {
+          startX = e.clientX;
+          isDragging = false;
+          (track as any).setPointerCapture?.(e.pointerId);
+        });
+        track.addEventListener('pointermove', (e: PointerEvent) => {
+          if (Math.abs(e.clientX - startX) > 6) isDragging = true;
+        });
+        track.addEventListener('click', (e: Event) => {
+          if (isDragging) {
+            e.preventDefault();
+            (e as any).stopPropagation?.();
+            isDragging = false;
+            return;
+          }
+          if ((e.target as HTMLElement).closest('[data-dot]')) return;
+          const idx = Math.round(track.scrollLeft / track.clientWidth);
+          const next = (idx + 1) % imgs.length;
+          goTo(next);
+        });
+      });
+
+      // Modal logic (global inquiry)
+      const modal = document.getElementById('inquiry-modal') as HTMLElement;
+      const subtitle = document.getElementById('modal-subtitle') as HTMLElement;
+      const fsSubject = document.getElementById('fs-subject') as HTMLInputElement;
+      const fsItemId = document.getElementById('fs-itemId') as HTMLInputElement;
+      const fsItemName = document.getElementById('fs-itemName') as HTMLInputElement;
+      const fsVinted = document.getElementById('fs-vintedUrl') as HTMLInputElement;
+      const fsNext = document.getElementById('fs-next') as HTMLInputElement;
+      // set _next to hvala page (needs full URL with base)
+      const base = import.meta.env.BASE_URL;
+      // Astro.site may be undefined in client; construct from location
+      // Use current origin + base + hvala/
+      const hvalaUrl = new URL(base + 'hvala/', window.location.origin).toString();
+      if (fsNext) fsNext.value = hvalaUrl;
+
+      function openModal(detail: {id:string,name:string,vintedUrl:string}) {
+        if (!modal) return;
+        if (subtitle) subtitle.textContent = `${detail.name} • 25 €`;
+        if (fsSubject) fsSubject.value = `Upit za ogrlicu ${detail.id} - ${detail.name}`;
+        if (fsItemId) fsItemId.value = detail.id;
+        if (fsItemName) fsItemName.value = detail.name;
+        if (fsVinted) fsVinted.value = detail.vintedUrl || '';
+        modal.classList.add('open');
+        modal.setAttribute('aria-hidden','false');
+        document.body.style.overflow = 'hidden';
+        // lenis stop
+        // @ts-ignore
+        window.lenis?.stop();
+      }
+      function closeModal() {
+        if (!modal) return;
+        modal.classList.remove('open');
+        modal.setAttribute('aria-hidden','true');
+        document.body.style.overflow = '';
+        // @ts-ignore
+        window.lenis?.start();
+      }
+      // delegate inquiry buttons
+      document.addEventListener('click', (e) => {
+        const target = e.target as HTMLElement;
+        const btn = target.closest('[data-inquiry]') as HTMLElement | null;
+        if (btn) {
+          e.preventDefault();
+          openModal({
+            id: btn.dataset.id || '',
+            name: btn.dataset.name || '',
+            vintedUrl: btn.dataset.vinted || ''
+          });
+        }
+        if (target.closest('[data-close]')) closeModal();
+      });
+      document.addEventListener('keydown', (e) => { if (e.key==='Escape') closeModal(); });
+
+      // Expose for tests
+      // @ts-ignore
+      window.__openInquiry = openModal;
+      // @ts-ignore
+      window.__closeInquiry = closeModal;
+    </script>
+  </body>
+</html>

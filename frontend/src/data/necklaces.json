@@ -1,0 +1,184 @@
+[
+  {
+    "id": "NKL-001",
+    "name": "Visibaba",
+    "price": 20,
+    "currency": "EUR",
+    "description": "Ručno izrađena tradicionalna ogrlica \"Visibaba\" — nježni perlični uzorak inspiriran prvim proljetnim cvijetom.",
+    "vintedUrl": "https://www.vinted.hr/items/640012345-visibaba-nkl-001",
+    "photos": [
+      "https://pub-1281a4ff9a60475bbbbd09d1ad5aa2fc.r2.dev/model_images/NKL-001-model.jpg",
+      "https://pub-1281a4ff9a60475bbbbd09d1ad5aa2fc.r2.dev/background_images/NKL-001-bg.jpeg"
+    ],
+    "featuredPhotoIndex": 0
+  },
+  {
+    "id": "NKL-002",
+    "name": "Perunika",
+    "price": 35,
+    "currency": "EUR",
+    "description": "Ručno izrađena tradicionalna ogrlica \"Perunika\" — ljubičasti tonovi nacionalnog cvijeta.",
+    "vintedUrl": "https://www.vinted.hr/items/640012482-jaglac-nkl-002",
+    "photos": [
+      "https://pub-1281a4ff9a60475bbbbd09d1ad5aa2fc.r2.dev/model_images/NKL-002-model.jpg",
+      "https://pub-1281a4ff9a60475bbbbd09d1ad5aa2fc.r2.dev/background_images/NKL-002-bg.jpeg"
+    ],
+    "featuredPhotoIndex": 0
+  },
+  {
+    "id": "NKL-003",
+    "name": "Jaglac",
+    "price": 25,
+    "currency": "EUR",
+    "description": "Ručno izrađena tradicionalna ogrlica \"Jaglac\" — bijelo-plavi tonovi proljetnog cvijeta.",
+    "vintedUrl": "https://www.vinted.hr/items/640012619-perunika-nkl-003",
+    "photos": [
+      "https://pub-1281a4ff9a60475bbbbd09d1ad5aa2fc.r2.dev/model_images/NKL-003-model.jpg",
+      "https://pub-1281a4ff9a60475bbbbd09d1ad5aa2fc.r2.dev/background_images/NKL-003-bg.jpeg"
+    ],
+    "featuredPhotoIndex": 0
+  },
+  {
+    "id": "NKL-004",
+    "name": "Zlatnica",
+    "price": 30,
+    "currency": "EUR",
+    "description": "Ručno izrađena tradicionalna ogrlica \"Zlatnica\" — elegantni zlatni tonovi.",
+    "vintedUrl": "https://www.vinted.hr/items/640012756-ciklama-nkl-004",
+    "photos": [
+      "https://pub-1281a4ff9a60475bbbbd09d1ad5aa2fc.r2.dev/model_images/NKL-004-model.jpg",
+      "https://pub-1281a4ff9a60475bbbbd09d1ad5aa2fc.r2.dev/background_images/NKL-004-bg.jpeg"
+    ],
+    "featuredPhotoIndex": 0
+  },
+  {
+    "id": "NKL-005",
+    "name": "Ciklama",
+    "price": 20,
+    "currency": "EUR",
+    "description": "Ručno izrađena tradicionalna ogrlica \"Ciklama\" — miris Mediterana u perlama.",
+    "vintedUrl": "https://www.vinted.hr/items/640012893-lavanda-nkl-005",
+    "photos": [
+      "https://pub-1281a4ff9a60475bbbbd09d1ad5aa2fc.r2.dev/model_images/NKL-005-model.jpg",
+      "https://pub-1281a4ff9a60475bbbbd09d1ad5aa2fc.r2.dev/background_images/NKL-005-bg.jpeg"
+    ],
+    "featuredPhotoIndex": 0
+  },
+  {
+    "id": "NKL-006",
+    "name": "Kadulja",
+    "price": 20,
+    "currency": "EUR",
+    "description": "Ručno izrađena tradicionalna ogrlica \"Kadulja\" — zemljani tonovi kadulje.",
+    "vintedUrl": "https://www.vinted.hr/items/640013030-kadulja-nkl-006",
+    "photos": [
+      "https://pub-1281a4ff9a60475bbbbd09d1ad5aa2fc.r2.dev/model_images/NKL-006-model.jpg",
+      "https://pub-1281a4ff9a60475bbbbd09d1ad5aa2fc.r2.dev/background_images/NKL-006-bg.jpeg"
+    ],
+    "featuredPhotoIndex": 0
+  },
+  {
+    "id": "NKL-007",
+    "name": "Lavanda",
+    "price": 25,
+    "currency": "EUR",
+    "description": "Ručno izrađena tradicionalna ogrlica \"Lavanda\" — ljubičasti ljetni tonovi.",
+    "vintedUrl": "https://www.vinted.hr/items/640013167-ruzmarin-nkl-007",
+    "photos": [
+      "https://pub-1281a4ff9a60475bbbbd09d1ad5aa2fc.r2.dev/model_images/NKL-007-model.jpg",
+      "https://pub-1281a4ff9a60475bbbbd09d1ad5aa2fc.r2.dev/background_images/NKL-007-bg.jpeg"
+    ],
+    "featuredPhotoIndex": 0
+  },
+  {
+    "id": "NKL-008",
+    "name": "Šafran",
+    "price": 25,
+    "currency": "EUR",
+    "description": "Ručno izrađena tradicionalna ogrlica \"Šafran\" — rani vjesnik proljeća s ljubičastim tonovima.",
+    "vintedUrl": "https://www.vinted.hr/items/640013304-brnistra-nkl-008",
+    "photos": [
+      "https://pub-1281a4ff9a60475bbbbd09d1ad5aa2fc.r2.dev/model_images/NKL-008-model.jpg",
+      "https://pub-1281a4ff9a60475bbbbd09d1ad5aa2fc.r2.dev/background_images/NKL-008-bg.jpeg"
+    ],
+    "featuredPhotoIndex": 0
+  },
+  {
+    "id": "NKL-009",
+    "name": "Ljiljan",
+    "price": 25,
+    "currency": "EUR",
+    "description": "Ručno izrađena tradicionalna ogrlica \"Ljiljan\" — žarke boje narančastog ljeta.",
+    "vintedUrl": "https://www.vinted.hr/items/640013441-jorgovan-nkl-009",
+    "photos": [
+      "https://pub-1281a4ff9a60475bbbbd09d1ad5aa2fc.r2.dev/model_images/NKL-009-model.jpg",
+      "https://pub-1281a4ff9a60475bbbbd09d1ad5aa2fc.r2.dev/background_images/NKL-009-bg.jpeg"
+    ],
+    "featuredPhotoIndex": 0
+  },
+  {
+    "id": "NKL-010",
+    "name": "Trnina",
+    "price": 30,
+    "currency": "EUR",
+    "description": "Ručno izrađena tradicionalna ogrlica \"Trnina\" — kontrast tamnih i svijetlih perli.",
+    "vintedUrl": "https://www.vinted.hr/items/640013578-trnina-nkl-010",
+    "photos": [
+      "https://pub-1281a4ff9a60475bbbbd09d1ad5aa2fc.r2.dev/model_images/NKL-010-model.jpg",
+      "https://pub-1281a4ff9a60475bbbbd09d1ad5aa2fc.r2.dev/background_images/NKL-010-bg.jpeg"
+    ],
+    "featuredPhotoIndex": 0
+  },
+  {
+    "id": "NKL-011",
+    "name": "Lipa",
+    "price": 25,
+    "currency": "EUR",
+    "description": "Ručno izrađena tradicionalna ogrlica \"Lipa\" — medeni tonovi lipe.",
+    "vintedUrl": "https://www.vinted.hr/items/640013715-lipa-nkl-011",
+    "photos": [
+      "https://pub-1281a4ff9a60475bbbbd09d1ad5aa2fc.r2.dev/model_images/NKL-011-model.jpg",
+      "https://pub-1281a4ff9a60475bbbbd09d1ad5aa2fc.r2.dev/background_images/NKL-011-bg.jpeg"
+    ],
+    "featuredPhotoIndex": 0
+  },
+  {
+    "id": "NKL-012",
+    "name": "Tulipan",
+    "price": 20,
+    "currency": "EUR",
+    "description": "Ručno izrađena tradicionalna ogrlica \"Tulipan\" — bijeli i nježni zeleni tonovi.",
+    "vintedUrl": "https://www.vinted.hr/items/640013852-hrast-nkl-012",
+    "photos": [
+      "https://pub-1281a4ff9a60475bbbbd09d1ad5aa2fc.r2.dev/model_images/NKL-012-model.jpg",
+      "https://pub-1281a4ff9a60475bbbbd09d1ad5aa2fc.r2.dev/background_images/NKL-012-bg.jpeg"
+    ],
+    "featuredPhotoIndex": 0
+  },
+  {
+    "id": "NKL-013",
+    "name": "Ružmarin",
+    "price": 15,
+    "currency": "EUR",
+    "description": "Ručno izrađena tradicionalna ogrlica \"Ružmarin\" — mediteranski zimzelen.",
+    "vintedUrl": "https://www.vinted.hr/items/640013989-bukva-nkl-013",
+    "photos": [
+      "https://pub-1281a4ff9a60475bbbbd09d1ad5aa2fc.r2.dev/model_images/NKL-013-model.jpg",
+      "https://pub-1281a4ff9a60475bbbbd09d1ad5aa2fc.r2.dev/background_images/NKL-013-bg.jpeg"
+    ],
+    "featuredPhotoIndex": 0
+  },
+  {
+    "id": "NKL-014",
+    "name": "Hrast",
+    "price": 35,
+    "currency": "EUR",
+    "description": "Ručno izrađena tradicionalna ogrlica \"Hrast\" — snažni zemljani tonovi.",
+    "vintedUrl": "https://www.vinted.hr/items/640014126-breza-nkl-014",
+    "photos": [
+      "https://pub-1281a4ff9a60475bbbbd09d1ad5aa2fc.r2.dev/model_images/NKL-014-model.jpg",
+      "https://pub-1281a4ff9a60475bbbbd09d1ad5aa2fc.r2.dev/background_images/NKL-014-bg.jpeg"
+    ],
+    "featuredPhotoIndex": 0
+  }
+]

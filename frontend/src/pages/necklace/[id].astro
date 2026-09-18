@@ -1,0 +1,57 @@
+---
+import Layout from "../../layouts/Layout.astro";
+import necklaces from "../../data/necklaces.json";
+import { withBase } from "../../utils/base";
+
+export async function getStaticPaths() {
+  return (necklaces as any[]).map((n) => ({
+    params: { id: n.id },
+    props: { necklace: n },
+  }));
+}
+
+const { necklace } = Astro.props as { necklace: typeof necklaces[number] };
+const base = import.meta.env.BASE_URL;
+const ogImage = necklace.photos[necklace.featuredPhotoIndex];
+---
+
+<Layout title={`${necklace.name} • 25 €`} description={necklace.description} ogImage={ogImage}>
+  <div class="container breadcrumbs">
+    <a href={base}>Početna</a> <span style="opacity:0.5">/</span> <a href={`${base}#kolekcija`}>Kolekcija</a> <span style="opacity:0.5">/</span> <span style="color:var(--text); font-weight:600">{necklace.name}</span>
+  </div>
+
+  <section class="container detail">
+    <div class="gallery" data-gallery>
+      <div class="gallery-main">
+        <img data-main-img src={withBase(necklace.photos[0])} alt={`${necklace.name} glavna fotografija`} width="800" height="1000" />
+      </div>
+      <div class="gallery-thumbs">
+        {necklace.photos.map((p, i) => (
+          <button class={i===0 ? "active" : ""} data-thumb data-src={withBase(p)} aria-label={`Foto ${i+1}`}>
+            <img src={withBase(p)} alt={`${necklace.name} foto ${i+1}`} loading="lazy" />
+          </button>
+        ))}
+      </div>
+    </div>
+
+    <div class="detail-info">
+      <h1 class="detail-title">{necklace.name}</h1>
+      <div class="detail-price">25 €</div>
+      <p class="detail-desc">{necklace.description}</p>
+
+      <div class="detail-actions">
+        <a href={necklace.vintedUrl} target="_blank" rel="noopener" class="btn btn-vinted">Kupi</a>
+        <button class="btn btn-ghost" data-inquiry data-id={necklace.id} data-name={necklace.name} data-vinted={necklace.vintedUrl}>Pošalji upit</button>
+      </div>
+
+      <div class="detail-meta">
+        <div><strong>Materijali:</strong> staklene perle, najlon nit, kopča — ručni rad</div>
+        <div><strong>Dostupnost:</strong> unikat (1 komad)</div>
+      </div>
+
+      <div style="margin-top:18px; display:flex; gap:8px; flex-wrap:wrap">
+        <a href={base} class="btn btn-ghost btn-small">← Natrag na kolekciju</a>
+      </div>
+    </div>
+  </section>
+</Layout>

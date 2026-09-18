@@ -1,0 +1,19 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "Necklaces",
+  "type": "array",
+  "items": {
+    "type": "object",
+    "required": ["id", "name", "price", "currency", "description", "vintedUrl", "photos", "featuredPhotoIndex"],
+    "properties": {
+      "id": { "type": "string", "pattern": "^NKL-\\d{3}$" },
+      "name": { "type": "string" },
+      "price": { "type": "number", "const": 25 },
+      "currency": { "type": "string", "const": "EUR" },
+      "description": { "type": "string" },
+      "vintedUrl": { "type": "string" },
+      "photos": { "type": "array", "minItems": 2, "maxItems": 3, "items": { "type": "string" } },
+      "featuredPhotoIndex": { "type": "integer", "enum": [0,1,2] }
+    }
+  }
+}

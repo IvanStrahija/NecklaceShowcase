@@ -1,0 +1,53 @@
+---
+import type { Necklace } from "../types/necklace";
+import { withBase } from "../utils/base";
+import { toThumbUrl } from "../utils/r2";
+
+interface Props { necklace: Necklace }
+const { necklace } = Astro.props;
+const base = import.meta.env.BASE_URL;
+const detailHref = `${base}necklace/${necklace.id}/`;
+// Home page: swipeable thumbnails — model first, then background
+// Keep original order (photos[0] is model), map to thumb URLs
+const thumbPhotos = necklace.photos.map((p) => withBase(toThumbUrl(p)));
+---
+
+<article class="card reveal">
+  <div class="card-media" data-card-gallery aria-label={`${necklace.name} galerija`}>
+    <div class="card-track" data-lenis-prevent>
+      {thumbPhotos.map((url, i) => (
+        <img
+          src={url}
+          alt={`${necklace.name} foto ${i + 1}`}
+          loading="lazy"
+          width="600"
+          height="750"
+          draggable="false"
+        />
+      ))}
+    </div>
+    <span class="card-badge">25 €</span>
+    {thumbPhotos.length > 1 && (
+      <div class="card-dots" aria-hidden="true">
+        {thumbPhotos.map((_, i) => (
+          <span class={i === 0 ? "active" : ""} data-dot={i}></span>
+        ))}
+      </div>
+    )}
+  </div>
+  <div class="card-body">
+    <h3 class="card-title"><a href={detailHref}>{necklace.name}</a></h3>
+    <p class="card-desc">{necklace.description}</p>
+    <div class="card-price">25 €</div>
+    <div class="card-actions">
+      <a href={necklace.vintedUrl} target="_blank" rel="noopener" class="btn btn-vinted btn-small">Kupi</a>
+      <button
+        class="btn btn-ghost btn-small"
+        data-inquiry
+        data-id={necklace.id}
+        data-name={necklace.name}
+        data-vinted={necklace.vintedUrl}
+      >Upit</button>
+    </div>
+  </div>
+</article>
