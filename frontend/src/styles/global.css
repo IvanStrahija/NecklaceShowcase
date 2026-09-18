@@ -5,6 +5,8 @@
   --muted: #6b5a4a;
   --accent: #9c2d2d;
   --accent-hover: #7a1f1f;
+  --vinted: #007782;
+  --vinted-hover: #005f68;
   --card-bg: #ffffff;
   --border: #e8ddd0;
   --radius: 18px;
@@ -74,6 +76,9 @@ img { display: block; max-width: 100%; }
 .btn { display: inline-flex; align-items: center; justify-content: center; gap: 8px; padding: 11px 18px; border-radius: 999px; font-weight: 600; font-size: 0.9rem; border: 1px solid transparent; cursor: pointer; transition: all .2s ease; text-decoration: none; }
 .btn-primary { background: var(--accent); color: white; }
 .btn-primary:hover { background: var(--accent-hover); transform: translateY(-1px); }
+.btn-vinted { background: var(--vinted); color: white; }
+.btn-vinted:hover { background: var(--vinted-hover); transform: translateY(-1px); }
+.btn-vinted[aria-disabled="true"] { opacity: 0.55; pointer-events: none; }
 .btn-ghost { background: var(--card-bg); border-color: var(--border); color: var(--text); }
 .btn-ghost:hover { border-color: var(--text); }
 .btn-small { padding: 4px 12px; font-size: 0.84rem; line-height: 1.3; }
