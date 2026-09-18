@@ -5,7 +5,8 @@ interface Props {
   description?: string;
   ogImage?: string;
 }
-const { title = "Tradicionalne ručno rađene ogrlice — unikat 25 €", description = "14 ručno izrađenih tradicionalnih ogrlica. Svaka unikat — 25 €. Kupi ili pošalji upit.", ogImage } = Astro.props;
+// Fixes (branch fixes): title/description → Handmade in Croatia; Vinted profile links removed (nav/footer); favicon expanded from necklace.png; contact form at #kontakt added; footer → ogrlice.; FormSubmit disclosure trimmed; Kupi/vintedUrl kept
+const { title = "Tradicionalne, ručno rađene ogrlice. Handmade in Croatia.", description = "Tradicionalne, ručno rađene ogrlice. Handmade in Croatia.", ogImage } = Astro.props;
 const base = import.meta.env.BASE_URL;
 const site = (Astro.site?.toString() ?? "https://kvizazist.github.io").replace(/\/$/, "");
 const canonical = new URL(base + Astro.url.pathname.replace(/^\//, ""), site + "/").toString();
@@ -33,7 +34,12 @@ const hvalaUrlStatic = new URL(base + "hvala/", site + "/").toString();
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Instrument+Sans:wght@400;600;700&display=swap" rel="stylesheet">
+    <!-- Fixes: favicon set generated from necklace.png (ico, png 16/32, svg embedded, apple-touch) -->
+    <link rel="icon" href={`${base}favicon.ico`} sizes="any" />
     <link rel="icon" type="image/svg+xml" href={`${base}favicon.svg`} />
+    <link rel="icon" type="image/png" href={`${base}favicon-32x32.png`} sizes="32x32" />
+    <link rel="icon" type="image/png" href={`${base}favicon-16x16.png`} sizes="16x16" />
+    <link rel="apple-touch-icon" href={`${base}apple-touch-icon.png`} />
   </head>
   <body>
     <header class="header">
@@ -42,21 +48,55 @@ const hvalaUrlStatic = new URL(base + "hvala/", site + "/").toString();
         <nav class="nav">
           <a href={base}>Kolekcija</a>
           <a href={`${base}#kontakt`}>Kontakt</a>
-          <a href="https://www.vinted.hr/member/kvizazist" target="_blank" rel="noopener">Vinted ↗</a>
         </nav>
       </div>
     </header>
     <main>
       <slot />
     </main>
-    <footer class="footer" id="kontakt">
+    <!-- Fixes: contact form added so #kontakt scroll shows visible form -->
+    <section id="kontakt" class="contact">
+      <div class="container">
+        <div class="contact-card">
+          <div class="contact-intro">
+            <h2>Kontakt</h2>
+            <p>Imate pitanje o ogrlicama? Pošaljite poruku — javit ćemo se uskoro.</p>
+          </div>
+          <form
+            class="contact-form"
+            action="https://formsubmit.co/kvizazist@gmail.com"
+            method="POST"
+          >
+            <input type="hidden" name="_captcha" value="false" />
+            <input type="hidden" name="_subject" value="Upit s kontakt forme — ogrlice" />
+            <input type="hidden" name="_next" id="contact-next" value={hvalaUrlStatic} />
+            <input type="text" name="_honey" class="form-honey" tabindex="-1" autocomplete="off" />
+            <div class="form-grid">
+              <label>
+                Vaš email *
+                <input type="email" name="email" required placeholder="ime@primjer.com" />
+              </label>
+              <label>
+                Poruka
+                <textarea name="message" required placeholder="Pozdrav, zanima me..."></textarea>
+              </label>
+              <button type="submit" class="btn btn-primary" style="width:100%">Pošalji poruku</button>
+              <!-- Fixes: FormSubmit disclosure truncated (removed 'Poruka ide na ...') -->
+              <div class="form-meta">Slanjem pristajete da vas kontaktiramo na navedeni email.</div>
+            </div>
+          </form>
+        </div>
+      </div>
+    </section>
+
+    <!-- Fixes: footer text 2026 — ručni rad → 2026 — ogrlice. -->
+    <footer class="footer">
       <div class="container footer-inner">
         <div>
           <strong>Tradicionalne ručno rađene ogrlice</strong>
         </div>
         <div style="text-align:right">
-          <a href="https://www.vinted.hr/member/kvizazist" target="_blank" rel="noopener" style="text-decoration:underline">Vinted ↗</a><br/>
-          <span style="opacity:0.7">© {new Date().getFullYear()} — ručni rad</span>
+          <span style="opacity:0.7">© {new Date().getFullYear()} — ogrlice.</span>
         </div>
       </div>
     </footer>
@@ -95,7 +135,8 @@ const hvalaUrlStatic = new URL(base + "hvala/", site + "/").toString();
               <textarea name="message" placeholder="Pozdrav, zanima me ogrlica..."></textarea>
             </label>
             <button type="submit" class="btn btn-primary" style="width:100%">Pošalji upit</button>
-            <div class="form-meta">Slanjem pristajete da vas kontaktiramo na navedeni email. Poruka ide na kvizazist@gmail.com putem FormSubmit.</div>
+            <!-- Fixes: trimmed FormSubmit disclosure -->
+            <div class="form-meta">Slanjem pristajete da vas kontaktiramo na navedeni email.</div>
           </div>
         </form>
       </div>
@@ -231,6 +272,8 @@ const hvalaUrlStatic = new URL(base + "hvala/", site + "/").toString();
       // Use current origin + base + hvala/
       const hvalaUrl = new URL(base + 'hvala/', window.location.origin).toString();
       if (fsNext) fsNext.value = hvalaUrl;
+      const contactNext = document.getElementById('contact-next') as HTMLInputElement | null;
+      if (contactNext) contactNext.value = hvalaUrl;
 
       function openModal(detail: {id:string,name:string,vintedUrl:string}) {
         if (!modal) return;

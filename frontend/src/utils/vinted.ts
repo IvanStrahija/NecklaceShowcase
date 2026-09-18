@@ -1,3 +1,4 @@
+// Fixes: kept for Kupi link handling (Vinted URLs); Vinted profile links removed elsewhere
 export function isVintedReady(url: string | null | undefined): boolean {
   if (!url) return false;
   const trimmed = url.trim();

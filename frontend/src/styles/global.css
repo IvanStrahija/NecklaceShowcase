@@ -1,3 +1,4 @@
+/* Fixes: added vinted vars for Kupi button (kept); contact styles below */
 :root {
   --bg: #fdf8f0;
   --bg-warm: #f5ebe0;
@@ -5,7 +6,7 @@
   --muted: #6b5a4a;
   --accent: #9c2d2d;
   --accent-hover: #7a1f1f;
-  --vinted: #007782;
+  --vinted: #007782; /* Fixes: kept for Kupi */
   --vinted-hover: #005f68;
   --card-bg: #ffffff;
   --border: #e8ddd0;
@@ -72,7 +73,7 @@ img { display: block; max-width: 100%; }
 .hero-meta strong { color: var(--text); }
 .hero-cta { margin-top: 26px; display: flex; gap: 12px; justify-content: center; flex-wrap: wrap; }
 
-/* Buttons */
+/* Buttons — Fixes: btn-vinted kept for Kupi */
 .btn { display: inline-flex; align-items: center; justify-content: center; gap: 8px; padding: 11px 18px; border-radius: 999px; font-weight: 600; font-size: 0.9rem; border: 1px solid transparent; cursor: pointer; transition: all .2s ease; text-decoration: none; }
 .btn-primary { background: var(--accent); color: white; }
 .btn-primary:hover { background: var(--accent-hover); transform: translateY(-1px); }
@@ -133,6 +134,14 @@ img { display: block; max-width: 100%; }
 .breadcrumbs { padding: 18px 0 0; font-size: 0.85rem; color: var(--muted); }
 .breadcrumbs a:hover { color: var(--text); text-decoration: underline; }
 
+/* Fixes: Contact section at #kontakt */
+.contact { padding: 48px 0 64px; border-top: 1px solid var(--border); background: var(--bg-warm); }
+.contact-card { display: grid; gap: 32px; background: var(--card-bg); border: 1px solid var(--border); border-radius: var(--radius); padding: 28px; box-shadow: var(--shadow); max-width: 880px; margin: 0 auto; }
+@media (min-width: 900px) { .contact-card { grid-template-columns: 0.9fr 1.1fr; align-items: start; } }
+.contact-intro h2 { font-size: 1.9rem; letter-spacing: -0.02em; margin: 0 0 10px; line-height: 1.05; }
+.contact-intro p { color: var(--muted); margin: 0; font-size: 0.98rem; line-height: 1.5; }
+.contact-form { display: block; }
+
 /* Footer */
 .footer { border-top: 1px solid var(--border); padding: 36px 0; color: var(--muted); font-size: 0.88rem; }
 .footer-inner { display: flex; flex-wrap: wrap; gap: 16px; justify-content: space-between; }
@@ -155,7 +164,3 @@ img { display: block; max-width: 100%; }
 .thankyou { text-align: center; padding: 80px 0; }
 .thankyou h1 { font-size: 2.4rem; margin-bottom: 10px; }
 .reveal { opacity: 0; transform: translateY(16px); }
-
-/* Tooltip for disabled vinted */
-.vinted-wrap { position: relative; flex: 1; display: flex; }
-.vinted-wrap[data-tooltip]:hover::after { content: attr(data-tooltip); position: absolute; bottom: calc(100% + 8px); left: 50%; transform: translateX(-50%); background: var(--text); color: white; padding: 6px 10px; border-radius: 8px; font-size: 0.78rem; white-space: nowrap; z-index: 2; }
