@@ -33,7 +33,11 @@ const hvalaUrlStatic = new URL(base + "hvala/", site + "/").toString();
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Instrument+Sans:wght@400;600;700&display=swap" rel="stylesheet">
+    <link rel="icon" href={`${base}favicon.ico`} sizes="any" />
     <link rel="icon" type="image/svg+xml" href={`${base}favicon.svg`} />
+    <link rel="icon" type="image/png" href={`${base}favicon-32x32.png`} sizes="32x32" />
+    <link rel="icon" type="image/png" href={`${base}favicon-16x16.png`} sizes="16x16" />
+    <link rel="apple-touch-icon" href={`${base}apple-touch-icon.png`} />
   </head>
   <body>
     <header class="header">
@@ -48,7 +52,40 @@ const hvalaUrlStatic = new URL(base + "hvala/", site + "/").toString();
     <main>
       <slot />
     </main>
-    <footer class="footer" id="kontakt">
+    <section id="kontakt" class="contact">
+      <div class="container">
+        <div class="contact-card">
+          <div class="contact-intro">
+            <h2>Kontakt</h2>
+            <p>Imate pitanje o ogrlicama? Pošaljite poruku — javit ćemo se uskoro.</p>
+          </div>
+          <form
+            class="contact-form"
+            action="https://formsubmit.co/kvizazist@gmail.com"
+            method="POST"
+          >
+            <input type="hidden" name="_captcha" value="false" />
+            <input type="hidden" name="_subject" value="Upit s kontakt forme — ogrlice" />
+            <input type="hidden" name="_next" id="contact-next" value={hvalaUrlStatic} />
+            <input type="text" name="_honey" class="form-honey" tabindex="-1" autocomplete="off" />
+            <div class="form-grid">
+              <label>
+                Vaš email *
+                <input type="email" name="email" required placeholder="ime@primjer.com" />
+              </label>
+              <label>
+                Poruka
+                <textarea name="message" required placeholder="Pozdrav, zanima me..."></textarea>
+              </label>
+              <button type="submit" class="btn btn-primary" style="width:100%">Pošalji poruku</button>
+              <div class="form-meta">Slanjem pristajete da vas kontaktiramo na navedeni email.</div>
+            </div>
+          </form>
+        </div>
+      </div>
+    </section>
+
+    <footer class="footer">
       <div class="container footer-inner">
         <div>
           <strong>Tradicionalne ručno rađene ogrlice</strong>
@@ -92,7 +129,7 @@ const hvalaUrlStatic = new URL(base + "hvala/", site + "/").toString();
               <textarea name="message" placeholder="Pozdrav, zanima me ogrlica..."></textarea>
             </label>
             <button type="submit" class="btn btn-primary" style="width:100%">Pošalji upit</button>
-            <div class="form-meta">Slanjem pristajete da vas kontaktiramo na navedeni email. Poruka ide na kvizazist@gmail.com putem FormSubmit.</div>
+            <div class="form-meta">Slanjem pristajete da vas kontaktiramo na navedeni email.</div>
           </div>
         </form>
       </div>
@@ -227,6 +264,8 @@ const hvalaUrlStatic = new URL(base + "hvala/", site + "/").toString();
       // Use current origin + base + hvala/
       const hvalaUrl = new URL(base + 'hvala/', window.location.origin).toString();
       if (fsNext) fsNext.value = hvalaUrl;
+      const contactNext = document.getElementById('contact-next') as HTMLInputElement | null;
+      if (contactNext) contactNext.value = hvalaUrl;
 
       function openModal(detail: {id:string,name:string}) {
         if (!modal) return;
