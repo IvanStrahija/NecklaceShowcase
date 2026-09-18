@@ -4,8 +4,8 @@ import { defineConfig } from 'astro/config';
 // https://astro.build/config
 export default defineConfig({
   output: 'static',
-  site: 'https://IvanStrahija.github.io',
-  base: '/NecklaceShowcase/',
+  site: 'https://ogrlice.store',
+  base: '/',
   trailingSlash: 'always',
   build: {
     format: 'directory',
