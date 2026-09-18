@@ -40,13 +40,11 @@ const thumbPhotos = necklace.photos.map((p) => withBase(toThumbUrl(p)));
     <p class="card-desc">{necklace.description}</p>
     <div class="card-price">25 €</div>
     <div class="card-actions">
-      <a href={necklace.vintedUrl} target="_blank" rel="noopener" class="btn btn-vinted btn-small">Kupi</a>
       <button
         class="btn btn-ghost btn-small"
         data-inquiry
         data-id={necklace.id}
         data-name={necklace.name}
-        data-vinted={necklace.vintedUrl}
       >Upit</button>
     </div>
   </div>

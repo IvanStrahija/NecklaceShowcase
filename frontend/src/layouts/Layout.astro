@@ -5,7 +5,7 @@ interface Props {
   description?: string;
   ogImage?: string;
 }
-const { title = "Tradicionalne ručno rađene ogrlice — unikat 25 €", description = "14 ručno izrađenih tradicionalnih ogrlica. Svaka unikat — 25 €. Kupi ili pošalji upit.", ogImage } = Astro.props;
+const { title = "Tradicionalne, ručno rađene ogrlice. Handmade in Croatia.", description = "Tradicionalne, ručno rađene ogrlice. Handmade in Croatia.", ogImage } = Astro.props;
 const base = import.meta.env.BASE_URL;
 const site = (Astro.site?.toString() ?? "https://kvizazist.github.io").replace(/\/$/, "");
 const canonical = new URL(base + Astro.url.pathname.replace(/^\//, ""), site + "/").toString();
@@ -42,7 +42,6 @@ const hvalaUrlStatic = new URL(base + "hvala/", site + "/").toString();
         <nav class="nav">
           <a href={base}>Kolekcija</a>
           <a href={`${base}#kontakt`}>Kontakt</a>
-          <a href="https://www.vinted.hr/member/kvizazist" target="_blank" rel="noopener">Vinted ↗</a>
         </nav>
       </div>
     </header>
@@ -55,7 +54,6 @@ const hvalaUrlStatic = new URL(base + "hvala/", site + "/").toString();
           <strong>Tradicionalne ručno rađene ogrlice</strong>
         </div>
         <div style="text-align:right">
-          <a href="https://www.vinted.hr/member/kvizazist" target="_blank" rel="noopener" style="text-decoration:underline">Vinted ↗</a><br/>
           <span style="opacity:0.7">© {new Date().getFullYear()} — ručni rad</span>
         </div>
       </div>
@@ -82,7 +80,6 @@ const hvalaUrlStatic = new URL(base + "hvala/", site + "/").toString();
           <input type="hidden" name="_next" id="fs-next" value={hvalaUrlStatic} />
           <input type="hidden" name="itemId" id="fs-itemId" value="" />
           <input type="hidden" name="itemName" id="fs-itemName" value="" />
-          <input type="hidden" name="vintedUrl" id="fs-vintedUrl" value="" />
           <input type="text" name="_honey" class="form-honey" tabindex="-1" autocomplete="off" />
 
           <div class="form-grid">
@@ -223,7 +220,6 @@ const hvalaUrlStatic = new URL(base + "hvala/", site + "/").toString();
       const fsSubject = document.getElementById('fs-subject') as HTMLInputElement;
       const fsItemId = document.getElementById('fs-itemId') as HTMLInputElement;
       const fsItemName = document.getElementById('fs-itemName') as HTMLInputElement;
-      const fsVinted = document.getElementById('fs-vintedUrl') as HTMLInputElement;
       const fsNext = document.getElementById('fs-next') as HTMLInputElement;
       // set _next to hvala page (needs full URL with base)
       const base = import.meta.env.BASE_URL;
@@ -232,13 +228,12 @@ const hvalaUrlStatic = new URL(base + "hvala/", site + "/").toString();
       const hvalaUrl = new URL(base + 'hvala/', window.location.origin).toString();
       if (fsNext) fsNext.value = hvalaUrl;
 
-      function openModal(detail: {id:string,name:string,vintedUrl:string}) {
+      function openModal(detail: {id:string,name:string}) {
         if (!modal) return;
         if (subtitle) subtitle.textContent = `${detail.name} • 25 €`;
         if (fsSubject) fsSubject.value = `Upit za ogrlicu ${detail.id} - ${detail.name}`;
         if (fsItemId) fsItemId.value = detail.id;
         if (fsItemName) fsItemName.value = detail.name;
-        if (fsVinted) fsVinted.value = detail.vintedUrl || '';
         modal.classList.add('open');
         modal.setAttribute('aria-hidden','false');
         document.body.style.overflow = 'hidden';
@@ -262,8 +257,7 @@ const hvalaUrlStatic = new URL(base + "hvala/", site + "/").toString();
           e.preventDefault();
           openModal({
             id: btn.dataset.id || '',
-            name: btn.dataset.name || '',
-            vintedUrl: btn.dataset.vinted || ''
+            name: btn.dataset.name || ''
           });
         }
         if (target.closest('[data-close]')) closeModal();
