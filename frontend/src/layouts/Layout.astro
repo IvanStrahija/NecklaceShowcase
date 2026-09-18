@@ -5,6 +5,7 @@ interface Props {
   description?: string;
   ogImage?: string;
 }
+// Fixes (branch fixes): title/description → Handmade in Croatia; Vinted profile links removed (nav/footer); favicon expanded from necklace.png; contact form at #kontakt added; footer → ogrlice.; FormSubmit disclosure trimmed; Kupi/vintedUrl kept
 const { title = "Tradicionalne, ručno rađene ogrlice. Handmade in Croatia.", description = "Tradicionalne, ručno rađene ogrlice. Handmade in Croatia.", ogImage } = Astro.props;
 const base = import.meta.env.BASE_URL;
 const site = (Astro.site?.toString() ?? "https://kvizazist.github.io").replace(/\/$/, "");
@@ -33,6 +34,7 @@ const hvalaUrlStatic = new URL(base + "hvala/", site + "/").toString();
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Instrument+Sans:wght@400;600;700&display=swap" rel="stylesheet">
+    <!-- Fixes: favicon set generated from necklace.png (ico, png 16/32, svg embedded, apple-touch) -->
     <link rel="icon" href={`${base}favicon.ico`} sizes="any" />
     <link rel="icon" type="image/svg+xml" href={`${base}favicon.svg`} />
     <link rel="icon" type="image/png" href={`${base}favicon-32x32.png`} sizes="32x32" />
@@ -52,6 +54,7 @@ const hvalaUrlStatic = new URL(base + "hvala/", site + "/").toString();
     <main>
       <slot />
     </main>
+    <!-- Fixes: contact form added so #kontakt scroll shows visible form -->
     <section id="kontakt" class="contact">
       <div class="container">
         <div class="contact-card">
@@ -78,6 +81,7 @@ const hvalaUrlStatic = new URL(base + "hvala/", site + "/").toString();
                 <textarea name="message" required placeholder="Pozdrav, zanima me..."></textarea>
               </label>
               <button type="submit" class="btn btn-primary" style="width:100%">Pošalji poruku</button>
+              <!-- Fixes: FormSubmit disclosure truncated (removed 'Poruka ide na ...') -->
               <div class="form-meta">Slanjem pristajete da vas kontaktiramo na navedeni email.</div>
             </div>
           </form>
@@ -85,6 +89,7 @@ const hvalaUrlStatic = new URL(base + "hvala/", site + "/").toString();
       </div>
     </section>
 
+    <!-- Fixes: footer text 2026 — ručni rad → 2026 — ogrlice. -->
     <footer class="footer">
       <div class="container footer-inner">
         <div>
@@ -130,6 +135,7 @@ const hvalaUrlStatic = new URL(base + "hvala/", site + "/").toString();
               <textarea name="message" placeholder="Pozdrav, zanima me ogrlica..."></textarea>
             </label>
             <button type="submit" class="btn btn-primary" style="width:100%">Pošalji upit</button>
+            <!-- Fixes: trimmed FormSubmit disclosure -->
             <div class="form-meta">Slanjem pristajete da vas kontaktiramo na navedeni email.</div>
           </div>
         </form>

@@ -10,6 +10,7 @@ const detailHref = `${base}necklace/${necklace.id}/`;
 // Home page: swipeable thumbnails — model first, then background
 // Keep original order (photos[0] is model), map to thumb URLs
 const thumbPhotos = necklace.photos.map((p) => withBase(toThumbUrl(p)));
+// Fixes: Kupi button kept (links to Vinted, text Kupi not Vinted); Vinted profile links removed elsewhere
 ---
 
 <article class="card reveal">
@@ -40,6 +41,7 @@ const thumbPhotos = necklace.photos.map((p) => withBase(toThumbUrl(p)));
     <p class="card-desc">{necklace.description}</p>
     <div class="card-price">25 €</div>
     <div class="card-actions">
+      <!-- Fixes: Kupi links to Vinted kept -->
       <a href={necklace.vintedUrl} target="_blank" rel="noopener" class="btn btn-vinted btn-small">Kupi</a>
       <button
         class="btn btn-ghost btn-small"
