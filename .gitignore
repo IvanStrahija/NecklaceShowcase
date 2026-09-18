@@ -1,0 +1,19 @@
+# frontend build
+frontend/dist/
+frontend/.astro/
+frontend/node_modules/
+
+# images original zips (keep extracted; ignore zone identifier)
+neklas/*.Zone.Identifier
+*.Zone.Identifier
+
+# OS
+.DS_Store
+Thumbs.db
+
+# user requested ignores — keep large binaries / local notes out of repo
+background_images/
+model_images/
+neklas/
+plan.md
+scripts/
